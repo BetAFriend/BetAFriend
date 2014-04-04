@@ -9,4 +9,3 @@
 9. Ko popraviš komentarje, drugi èlan ekipe sprejme pull request.
 10. Potegni spremembe iz master v 2. pull request, razreši konflikt, "pushaj"
 11. Enako za 3. P.R.
-12. test
