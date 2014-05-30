@@ -19,8 +19,7 @@ betAfriendControllers.controller('DashboardController', ['$scope', '$http', '$fi
     $scope.bets = $firebase(betsSource);
     $scope.users = $firebase(usersSource);
     $scope.categories = $firebase(categoriesSource);
-    $scope.orderProp = 'id';
-    $scope.limitNum = 5;
+    $scope.orderProp = 'name';
     /*var newList = [];
     for (var i = 0; i < 5; i++) {
         newList[i] = {id:i, name:"janez"};
@@ -76,7 +75,7 @@ betAfriendControllers.controller('CreateBetController', ['$scope', '$rootScope',
     $scope.newBet = {name:"",
                      creationDate:"",
                      dueDate:"",
-                     /*categories: {
+                     categories: {
                         Sport:false,
                         Family:false,
                         'Free time':false,
@@ -84,8 +83,7 @@ betAfriendControllers.controller('CreateBetController', ['$scope', '$rootScope',
                         Hobys:false,
                         Fun:false,
                         'Drinking games':false
-                     },*/
-                     categories:[],
+                     },
                      betDetails: {
                         betDescription:{
                             description:"",
@@ -100,16 +98,13 @@ betAfriendControllers.controller('CreateBetController', ['$scope', '$rootScope',
     //With jQuery we check which checkboxed are checked,
     //and then we change newBet.categories['value'] of true ones
     var checkCategories = function(clear) {
-        var catCount = 0;
         for (var i = 0; i < 7; i++) {
             if (!clear) {
                 var kat = "#checkbox"+i;
                 var bool = $(kat).prop('checked');
                 var value = $(kat).val();
                 if (bool) {
-                    //$scope.newBet.categories[value] = true;
-                    $scope.newBet.categories[catCount] = value;
-                    catCount++;
+                    $scope.newBet.categories[value] = true;
                 }
             } else {
                 var kat = "#checkbox"+i;
@@ -135,12 +130,16 @@ betAfriendControllers.controller('CreateBetController', ['$scope', '$rootScope',
     $scope.addBet = function() {
         checkCategories(false);
         addRules();
-        betsSource.push($scope.newBet);
+<<<<<<< HEAD
         var id = new Date().getTime() + Math.floor((Math.random() * 1024) + 1);
         $scope.newBet.id = id; // put id into the data
         betsSource.child(id).set($scope.newBet);
 
         // betsSource.push($scope.newBet);
+=======
+        alert($('#datepickStart').val());
+        betsSource.push($scope.newBet);
+>>>>>>> be3bbf39cb3c09b630315607ac164f7370f2f5bb
         $scope.newBet = '';
         checkCategories(true);
 
@@ -304,7 +303,7 @@ betAfriendControllers.controller('AuthController', ['$scope', '$rootScope','fire
                 $rootScope.alert.message = 'Invalid credentials!';               
             }
         }
-        else if (user) {
+        if (user) {
             console.log('Logged In', user);
 
             $rootScope.isLoggedIn = true;

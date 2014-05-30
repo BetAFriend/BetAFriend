@@ -1,56 +1,33 @@
-<div class="jumbotron">
+<div class="bg"></div>
+<div class="jumbotron j-bg">
 	<div class="container">
 		<h3>Welcome to BetAFriend application!</h3>
 		<p>
-			This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.
+			BetAFriend application allows users to create new bets and challenge your friends or simply browse through the many of already created bets.
 		</p>
 		<div class="align-center">
-			<a class="btn btn-embossed btn-primary btn-lg" role="button" href="#/create">
+			<a class="btn btn-embossed btn-primary btn-lg" role="button" href="#!/create">
 				<span class="icon-file3"></span>
 				Create Bet
 			</a>
 			<small class="or-element">or</small>
-			<a class="btn btn-embossed btn-primary btn-lg" role="button" href="#/browse">
+			<a class="btn btn-embossed btn-primary btn-lg" role="button" href="#!/browse">
 				<span class="icon-stack"></span>
 				Browse Bets
 			</a>
 		</div>
 	</div>
 </div>
-	<section class="stats-container">
+	<section class="stats-container" ng-controller="DashboardController">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-3" id="lastsBets">
 					<h4>Last Bets</h4>
-					<hr>
 					<div class="list-group">
-						<a href="#" class="list-group-item">
-							<p class="list-group-item-heading">List group item heading</p>
+						<a href="/#!/bet/{{bet.id}}" class="list-group-item" ng-repeat="bet in bets | filter:query | limitTo:limitNum | orderBy:orderProp">
+							<p class="list-group-item-heading">{{bet.name}}</p>
 							<p class="list-group-item-text">
-								<small>16.4.2014</small>
-							</p>						</a>
-						<a href="#" class="list-group-item">
-							<p class="list-group-item-heading">List group item heading</p>
-							<p class="list-group-item-text">
-								<small>16.4.2014</small>
-							</p>
-						</a>
-						<a href="#" class="list-group-item">
-							<p class="list-group-item-heading">List group item heading</p>
-							<p class="list-group-item-text">
-								<small>16.4.2014</small>
-							</p>
-						</a>
-						<a href="#" class="list-group-item">
-							<p class="list-group-item-heading">List group item heading</p>
-							<p class="list-group-item-text">
-								<small>16.4.2014</small>
-							</p>
-						</a>
-						<a href="#" class="list-group-item">
-							<p class="list-group-item-heading">List group item heading</p>
-							<p class="list-group-item-text">
-								<small>16.4.2014</small>
+								<small>{{bet.creationDate}}</small>
 							</p>
 						</a>
 					</div>
@@ -61,29 +38,13 @@
 				</div>
 				<div class="col-md-3">
 					<h4>Most Popular</h4>
-					<hr>
-					<ul class="list-group">
-						<li class="list-group-item">
-							<span class="badge">650</span>
-							Cras justo odio
-						</li>
-						<li class="list-group-item">
-							<span class="badge">410</span>
-							Cras justo odio
-						</li>
-						<li class="list-group-item">
-							<span class="badge">251</span>
-							Cras justo odio
-						</li>
-						<li class="list-group-item">
-							<span class="badge">140</span>
-							Cras justo odio
-						</li>
-						<li class="list-group-item">
-							<span class="badge">46</span>
-							Cras justo odio
-						</li>
-					</ul>
+					<div class="list-group">
+						<a href="/#!/bet/{{bet.id}}" class="list-group-item" ng-repeat="bet in bets">
+							<p class="list-group-item-heading">{{bet.name}}</p>
+							<p class="list-group-item-text">
+								<small>{{bet.creationDate}}</small>
+							</p>						</a>
+					</div>
 					<hr>
 <!-- 					<p>
 						<a class="btn btn-embossed btn-default" href="#" role="button">more »</a>
@@ -91,27 +52,10 @@
 				</div>
 				<div class="col-md-3">
 					<h4>Bets Per Category</h4>
-					<hr>
 					<ul class="list-group">
-						<li class="list-group-item">
-							<span class="badge">650</span>
-							Family
-						</li>
-						<li class="list-group-item">
-							<span class="badge">410</span>
-							Funny
-						</li>
-						<li class="list-group-item">
-							<span class="badge">251</span>
-							Sport
-						</li>
-						<li class="list-group-item">
-							<span class="badge">140</span>
-							School/Work
-						</li>
-						<li class="list-group-item">
-							<span class="badge">46</span>
-							Friends
+		 				<li class="list-group-item" ng-repeat="cat in categories">
+							<span class="badge">{{cat.name}}</span>
+							{{cat.id}}
 						</li>
 					</ul>
 					<hr>
@@ -121,7 +65,6 @@
 				</div>
 				<div class="col-md-3">
 					<h4>Stats</h4>
-					<hr>
 					<ul class="list-group">
 						<li class="list-group-item">
 							Bets
